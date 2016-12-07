@@ -1,0 +1,12 @@
+[submodule "Project/externals/mqtt_c_client"]
+	path = mqttClient_x86/externals/mqtt_c_client
+	url = https://github.com/tom360v/mqtt_c_client
+[submodule "Project/externals/ServicesRGB"]
+	path = mqttClient_x86/externals/ServicesRGB
+	url = https://github.com/tom360v/ServicesRGB
+[submodule "Project/externals/fifo"]
+	path = mqttClient_x86/externals/fifo
+	url = https://github.com/tom360v/fifo
+[submodule "Project/externals/ServiceDispatcher"]
+	path = mqttClient_x86/externals/ServiceDispatcher
+	url = https://github.com/tom360v/ServiceDispatcher
