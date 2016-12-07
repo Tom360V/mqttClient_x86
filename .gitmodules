@@ -10,3 +10,6 @@
 [submodule "mqttClient_x86/externals/mqtt_c"]
 	path = mqttClient_x86/externals/mqtt_c
 	url = https://github.com/tom360v/mqtt_c
+[submodule "mqttClient_x86/externals/socket"]
+	path = mqttClient_x86/externals/socket
+	url = https://github.com/tom360v/socket
