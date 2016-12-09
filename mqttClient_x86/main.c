@@ -11,8 +11,8 @@
 #include "x86.h"
 #include "Client.h"
 
-#include "msgRGBServer.h"
-#include "msgRGBClient.h"
+#include "serviceRGBServer.h"
+#include "serviceRGBClient.h"
 
 #define LOG_ERROR(...)     \
                         perror(__FUNCTION__);                   \
