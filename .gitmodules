@@ -13,3 +13,6 @@
 [submodule "mqttClient_x86/externals/ServiceRGB"]
 	path = mqttClient_x86/externals/ServiceRGB
 	url = https://github.com/tom360v/ServiceRGB
+[submodule "mqttClient_x86/externals/ServiceDispatcher"]
+	path = mqttClient_x86/externals/ServiceDispatcher
+	url = https://github.com/tom360v/ServiceDispatcher
