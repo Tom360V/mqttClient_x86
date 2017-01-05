@@ -1,0 +1,17 @@
+cmake_minimum_required(VERSION 2.8)
+
+project (clientSocket)
+
+#Add related projects
+
+
+#Add include directories
+include_directories("inc")
+
+
+#Add sources
+set(srcs src/clientSocket.c)
+
+
+#Add Library
+add_library(clientSocket SHARED ${srcs})
