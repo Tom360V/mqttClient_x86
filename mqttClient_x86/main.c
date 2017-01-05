@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "clientSock.h"
+#include "clientSocket.h"
 #include "PubSubClient.h"
 #include "ServiceDispatcher.h"
 #include "ServiceDispatcherRouter.h"
@@ -57,7 +57,7 @@ int main(int argc, char *argv[])
 
     clientSocket_init();
 
-    PubSubClient_initHostCallback((Client_t*)&clientSock, "test.mosquitto.org",   1883, cbDataReived);
+    PubSubClient_initHostCallback((Client_t*)&clientSock, &millis, "test.mosquitto.org",   1883, cbDataReived);
 //  PubSubClient_initHostCallback((Client_t*)&clientSock, "data.sparkfun.com",    1883, cbDataReived);
 
     SDR_Init(&PubSubClient_subscribe);
@@ -76,13 +76,22 @@ int main(int argc, char *argv[])
             LOG_INFO("  Subscribing");
             PubSubClient_subscribe("2/+");
             PubSubClient_subscribe("rgbServer/+");
+            PubSubClient_subscribe("rgbServer");
             sleep(1);
 
+            uint16_t cnt = 55;
             while(PubSubClient_connected())
             {
                 PubSubClient_loop();
                 SDQ_Thread();
                 sleep(1);
+
+                cnt++;
+                if(cnt>60)
+                {
+                    cnt = 0;
+                    PubSubClient_publish("HW", (uint8_t*)"HelloWorld!", 11);
+                }
             }
         }
         sleep(2);
