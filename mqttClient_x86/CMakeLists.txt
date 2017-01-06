@@ -14,13 +14,9 @@ set(externals
   externals/ServiceDispatcher
   externals/ServiceRGB
   externals/socket
+  externals/fifo
 )
 
-
-#Add related projects
-foreach(ext ${externals})
-    add_subdirectory(${ext})
-endforeach(ext)
 
 #Add include directories
 include_directories(./)
@@ -31,6 +27,11 @@ foreach(ext ${externals})
     include_directories(${ext}/inc)
 endforeach(ext)
 
+#Add related projects
+foreach(ext ${externals})
+    add_subdirectory(${ext})
+endforeach(ext)
+
 
 #Add sources
 set(srcs main.c
@@ -39,6 +40,6 @@ set(srcs main.c
 
 #Add EXEcutable
 add_executable(mqttClient_x86 ${srcs})
-target_link_libraries(mqttClient_x86 mqtt_c ServiceDispatcher client ServiceRGB)
+target_link_libraries(mqttClient_x86 mqtt_c ServiceDispatcher client fifo ServiceRGB)
 
 #add_test(TEST_mqttClient_x86 test/test_ServiceDispatcherRouter)
