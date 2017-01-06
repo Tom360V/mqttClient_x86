@@ -1,3 +1,6 @@
+# metadata
+.metadata/*
+
 # Object files
 *.o
 *.ko
