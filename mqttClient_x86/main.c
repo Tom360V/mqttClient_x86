@@ -30,7 +30,6 @@
 void   cbDataReived(char* topic, uint8_t* payload, unsigned int length);
 int8_t cbPublishData(SDHandle_t sdqHandle, uint8_t *topic, uint8_t topicLength, uint8_t *data, uint8_t dataLength);
 
-
 void cbDataReived(char* topic, uint8_t* payload, unsigned int length)
 {
     LOG_INFO("Received %s", topic);
@@ -42,13 +41,18 @@ int8_t cbPublishData(SDHandle_t sdqHandle, uint8_t *topic, uint8_t topicLength, 
     char *t = (char*)topic;
     topic[topicLength] = 0x0;
     LOG_INFO("Send %s", t);
-    if(PubSubClient_publish(t, (uint8_t*)data, dataLength))
+    if(PubSubClient_publish(t, (uint8_t*)data, dataLength, 1))
     {
         LOG_INFO("    done");
     }
     return 0;
 }
 
+int8_t subscribeToTopic(char *topic)
+{
+    LOG_INFO("Subscribe to: %s", topic);
+    return PubSubClient_subscribe(topic);
+}
 
 int main(int argc, char *argv[])
 {
@@ -59,8 +63,9 @@ int main(int argc, char *argv[])
 
     PubSubClient_initHostCallback((Client_t*)&clientSock, &millis, "test.mosquitto.org",   1883, cbDataReived);
 //  PubSubClient_initHostCallback((Client_t*)&clientSock, "data.sparkfun.com",    1883, cbDataReived);
+    PubSubClient_setMyAddress("NL","EHV","PCClient");
 
-    SDR_Init(&PubSubClient_subscribe);
+    SDR_Init();
     SDQ_Init(&cbPublishData);
 
     //Let services subscribe
@@ -74,12 +79,12 @@ int main(int argc, char *argv[])
         if (PubSubClient_connectId("mqttClient"))
         {
             LOG_INFO("  Subscribing");
-            PubSubClient_subscribe("2/+");
-            PubSubClient_subscribe("rgbServer/+");
-            PubSubClient_subscribe("rgbServer");
+            SDR_SubscribeAllServices(&subscribeToTopic);
+            PubSubClient_publish("HW", (uint8_t*)"== Start ==", 11, 0 /*no address*/);
+
             sleep(1);
 
-            uint16_t cnt = 55;
+            uint16_t cnt = 25;
             while(PubSubClient_connected())
             {
                 PubSubClient_loop();
@@ -87,10 +92,10 @@ int main(int argc, char *argv[])
                 sleep(1);
 
                 cnt++;
-                if(cnt>60)
+                if(cnt>30)
                 {
                     cnt = 0;
-                    PubSubClient_publish("HW", (uint8_t*)"HelloWorld!", 11);
+                    PubSubClient_publish("HW", (uint8_t*)"HelloWorld!", 11, 1 /*add address*/);
                 }
             }
         }
