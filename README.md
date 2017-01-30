@@ -1,10 +1,10 @@
 # mqttClient for x86
 
-mqttClient: [![Build Status](https://travis-ci.org/Tom360V/mqttClient_x86.svg?branch=master)](https://travis-ci.org/Tom360V/mqttClient_x86)
+[![Build Status](https://travis-ci.org/Tom360V/mqttClient_x86.svg?branch=master)](https://travis-ci.org/Tom360V/mqttClient_x86) :: mqttClient
 
-ServiceDispatcher: [![Build Status](https://travis-ci.org/spoorcc/ServiceDispatcher.svg?branch=master)](https://travis-ci.org/Tom360V/ServiceDispatcher)
+[![Build Status](https://travis-ci.org/spoorcc/ServiceDispatcher.svg?branch=master)](https://travis-ci.org/Tom360V/ServiceDispatcher) :: ServiceDispatcher
 
-Fifo: [![Build Status](https://travis-ci.org/Tom360V/fifo.svg?branch=master)](https://travis-ci.org/Tom360V/fifo)
+[![Build Status](https://travis-ci.org/Tom360V/fifo.svg?branch=master)](https://travis-ci.org/Tom360V/fifo) :: Fifo
 
 https://travis-ci.org/
 Service Dispatcher
