@@ -41,7 +41,7 @@ int8_t cbPublishData(SDHandle_t sdqHandle, uint8_t *topic, uint8_t topicLength, 
     char *t = (char*)topic;
     topic[topicLength] = 0x0;
     LOG_INFO("Send %s", t);
-    if(PubSubClient_publish(t, (uint8_t*)data, dataLength, 1))
+	if (PubSubClient_publish(t, (uint8_t*)data, dataLength, 1))
     {
         LOG_INFO("    done");
     }
@@ -61,7 +61,8 @@ int main(int argc, char *argv[])
 
     clientSocket_init();
 
-    PubSubClient_initHostCallback((Client_t*)&clientSock, &millis, "test.mosquitto.org",   1883, cbDataReived);
+//  PubSubClient_initHostCallback((Client_t*)&clientSock, &millis, "test.mosquitto.org",   1883, cbDataReived);
+    PubSubClient_initHostCallback((Client_t*)&clientSock, &millis, "192.168.5.10",   1883, cbDataReived);
 //  PubSubClient_initHostCallback((Client_t*)&clientSock, "data.sparkfun.com",    1883, cbDataReived);
     PubSubClient_setMyAddress("NL","EHV","PCClient");
 
