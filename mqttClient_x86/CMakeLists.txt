@@ -11,8 +11,9 @@ enable_testing()
 
 set(externals
   externals/mqtt_c
-  externals/ServiceDispatcher
   externals/ServiceRGB
+  externals/fsm_engine
+  externals/ServiceDispatcher
   externals/socket
   externals/fifo
 )

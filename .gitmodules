@@ -16,3 +16,6 @@
 [submodule "mqttClient_x86/externals/ServiceDispatcher"]
 	path = mqttClient_x86/externals/ServiceDispatcher
 	url = http://github.com/tom360v/ServiceDispatcher
+[submodule "mqttClient_x86/externals/fsm_engine"]
+	path = mqttClient_x86/externals/fsm_engine
+	url = http://github.com/tom360v/fsm_engine
